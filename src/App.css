@@ -1,0 +1,94 @@
+.title {
+  width: 100%;
+  font-size: 48px;
+
+  text-shadow: 5px 4px 4px #0e0ae4d2;
+
+  color: rgb(252, 245, 245);
+  background: rgba(0, 0, 0, 0.664);
+  font-weight: bold;
+}
+.hero-container {
+  min-height: 80vh;
+  /* background: rgba(0, 0, 0, 0.459); */
+}
+
+.left-container {
+  height: auto;
+}
+.movie-search-container {
+  width: 100%;
+  height: auto;
+  /* background: rgba(76, 54, 199, 0.795); */
+  background: linear-gradient(rgba(76, 54, 199, 0.795), pink);
+  backdrop-filter: blur(5px);
+  box-shadow: 10px 10px 20px rgba(214, 4, 4, 0.3);
+}
+.desc {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+}
+.search-btn {
+  margin-left: 33%;
+  background: radial-gradient(blue, rgb(200, 10, 238));
+}
+.search-btn:hover {
+  transform: scale(1.2);
+  margin-top: 10px;
+  transition: linear 0.5s;
+  box-shadow: 10px 10px 20px rgba(48, 252, 2, 0.932);
+}
+
+.movie-card-item img {
+  width: 100%;
+  height: auto;
+}
+
+.right-container {
+  background: rgb(233, 216, 216);
+
+  height: 110vh;
+}
+
+.modern-tv {
+  width: 80%;
+  background: #000; /* TV frame color */
+  border-radius: 10px; /* Slight rounding for a modern look */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+  position: relative;
+}
+
+.tv-screen {
+  width: 100%;
+  height: 300px;
+  background: #222; /* Placeholder background */
+  border-radius: 10px; /* Match the TV's rounded corners */
+  overflow: hidden;
+  position: relative;
+}
+
+.tv-screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes video fill the screen without distortion */
+}
+
+.tv-stand {
+  width: 150px;
+  height: 20px;
+  background: #1b067a;
+  border-radius: 5px;
+  margin: 10px auto 0;
+  position: relative;
+}
+.line {
+  width: 100%;
+  border: 1px solid black;
+}
+.sub-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
