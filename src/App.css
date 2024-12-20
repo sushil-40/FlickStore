@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .title {
   width: 100%;
   font-size: 48px;
@@ -47,6 +53,7 @@
 }
 
 .right-container {
+  position: relative;
   background: rgb(233, 216, 216);
 
   height: 110vh;
@@ -91,4 +98,79 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
+}
+
+/* image slider  */
+.slider-container {
+  display: flex;
+  position: relative;
+  width: 100%; /* Take full width of the parent */
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1s ease;
+}
+
+.slider {
+  width: 100%; /* Ensure slider spans full width */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide {
+  position: relative;
+  flex: 0 0 auto; /* Prevent shrinking */
+  width: 250px; /* Set a consistent width for slides */
+  /* height: 300px; */
+  margin: 0 -50px; /* Create overlapping effect */
+  transform: scale(0.8); /* Default scaling for non-active slides */
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.slide img {
+  width: 100%;
+  /* height: 300px; */
+  border-radius: 10px;
+}
+
+.slide.active {
+  transform: scale(1); /* Scale active slide to full size */
+  opacity: 1;
+  z-index: 3; /* Bring active slide to the front */
+}
+
+.slide.left,
+.slide.right {
+  opacity: 0.8; /* Slightly increase opacity for surrounding slides */
+  z-index: 2;
+}
+
+.arrow {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  z-index: 4;
+  border: none;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+.arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }

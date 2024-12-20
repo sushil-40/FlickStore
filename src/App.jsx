@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import "./App.css";
 import { MovieCard } from "./components/MovieCard";
+import { MovieSlider } from "./components/MovieSlider";
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
               <hr className="line" />
               <div className="trending-movies">
                 <p className="sub-title">Trending Movies</p>
+                {/* Movie slider  */}
+                <MovieSlider />
               </div>
             </div>
           </div>
