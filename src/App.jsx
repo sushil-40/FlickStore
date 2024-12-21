@@ -1,17 +1,19 @@
 import { useState } from "react";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./App.css";
 import { MovieCard } from "./components/MovieCard";
 import { MovieSlider } from "./components/MovieSlider";
+import { Display } from "./components/Display";
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className="wrapper container">
       <header className="title  font-effect-shadow-multiple">
         Flick Store
       </header>
 
-      <div className="hero-container">
+      <div className="hero-container container d-flex justify-content-center  flex-column">
         <div className="hero-content row">
           <div className="left-container col-12 col-md-4  d-flex justify-content-center align-items-center">
             <div className="movie-search-container m-2 d-flex flex-column">
@@ -53,17 +55,23 @@ function App() {
                 </div>
                 <div className="tv-stand"></div>
               </div>
-              <hr className="line" />
-              <div className="trending-movies">
+              <hr className="line my-4" />
+              <div className="trending-movies-container">
                 <p className="sub-title">Trending Movies</p>
                 {/* Movie slider  */}
-                <MovieSlider />
+                <div className="col-12 trending-movies">
+                  <MovieSlider />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div className="display-list  row mt-5">
+          <Display />
+        </div>
       </div>
-      <footer className="footer-section  m-2">
+
+      <footer className="footer-section container m-2">
         &copy; 2024 Copyright all reserved || Sushil Dangoriya
       </footer>
     </div>

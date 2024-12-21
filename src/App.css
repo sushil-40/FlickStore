@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.wrapper {
+  background-color: yellow;
+}
 
 .title {
   width: 100%;
@@ -15,7 +18,9 @@
   font-weight: bold;
 }
 .hero-container {
-  min-height: 80vh;
+  min-height: 100vh;
+  /* flex-wrap: wrap; */
+  gap: 0px;
   /* background: rgba(0, 0, 0, 0.459); */
 }
 
@@ -56,7 +61,7 @@
   position: relative;
   background: rgb(233, 216, 216);
 
-  height: 110vh;
+  /* min-height: 100vh; */
 }
 
 .modern-tv {
@@ -98,79 +103,85 @@
   color: white;
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 /* image slider  */
-.slider-container {
-  display: flex;
-  position: relative;
-  width: 100%; /* Take full width of the parent */
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  transition: transform 1s ease;
-}
-
-.slider {
-  width: 100%; /* Ensure slider spans full width */
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.slide {
-  position: relative;
-  flex: 0 0 auto; /* Prevent shrinking */
-  width: 250px; /* Set a consistent width for slides */
-  /* height: 300px; */
-  margin: 0 -50px; /* Create overlapping effect */
-  transform: scale(0.8); /* Default scaling for non-active slides */
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  z-index: 1;
-  opacity: 0.5;
-}
-
-.slide img {
+.trending-movies-container {
   width: 100%;
-  /* height: 300px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7); /* Add some contrast */
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.slide.active {
-  transform: scale(1); /* Scale active slide to full size */
-  opacity: 1;
-  z-index: 3; /* Bring active slide to the front */
+/* .slider-container { */
+/* display: flex; */
+/* position: relative; */
+/* width: 100%; Take full width of the parent */
+/* height: 100%; */
+/* justify-content: center; */
+/* align-items: center; */
+/* transition: transform 1s ease; */
+/* } */
+
+/* .trending-movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+} */
+
+.slider-item {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.slide.left,
-.slide.right {
-  opacity: 0.8; /* Slightly increase opacity for surrounding slides */
-  z-index: 2;
+.slider-item img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.arrow {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  cursor: pointer;
-  user-select: none;
-  padding: 8px;
-  background-color: rgba(0, 0, 0, 0.5);
+.slick-dots {
+  bottom: -20px;
+}
+
+.slick-dots li button:before {
+  color: white; /* Color of the dots */
+}
+
+.slick-arrow {
+  z-index: 10;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-size: 20px;
+  background: #070707dc;
   color: white;
-  border-radius: 50%;
-  z-index: 4;
-  border: none;
 }
+/* For screens below 768px */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column; /* Stack content vertically */
+  }
 
-.arrow.left {
-  left: 10px;
-}
+  .right-container,
+  .left-container,
+  .display-list {
+    width: 100%; /* Full width for smaller screens */
+  }
 
-.arrow.right {
-  right: 10px;
-}
-
-.arrow:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  .display-list {
+    margin-top: 10px; /* Add spacing between sections */
+  }
 }
