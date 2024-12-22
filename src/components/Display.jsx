@@ -21,7 +21,7 @@ export const Display = () => {
   //   };
   return (
     <div className=" mt-1">
-      <div className="bg-dark p-3 rounded">
+      <div className="display-container p-3 rounded">
         <div className="row">
           <div className="col">
             <div className="btn-group" role="group" aria-label="Basic example">

@@ -66,12 +66,12 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="display-list  row mt-5">
+        <div className="display-list  row mt-5 mb-2">
           <Display />
         </div>
       </div>
 
-      <footer className="footer-section container m-2">
+      <footer className="footer-section container mt-3 ">
         &copy; 2024 Copyright all reserved || Sushil Dangoriya
       </footer>
     </div>

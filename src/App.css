@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .wrapper {
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 
 .title {
@@ -14,14 +14,17 @@
   text-shadow: 5px 4px 4px #0e0ae4d2;
 
   color: rgb(252, 245, 245);
-  background: rgba(0, 0, 0, 0.664);
+  background: radial-gradient(white, blue);
+  /* background: linear-gradient(135deg, #b6e703, #1a0cdf, rgb(10, 25, 240)); */
+  /* background: #228b22; */
   font-weight: bold;
 }
 .hero-container {
   min-height: 100vh;
   /* flex-wrap: wrap; */
-  gap: 0px;
+  /* gap: 0px; */
   /* background: rgba(0, 0, 0, 0.459); */
+  /* background: red; */
 }
 
 .left-container {
@@ -30,10 +33,11 @@
 .movie-search-container {
   width: 100%;
   height: auto;
+  border: 1px solid black;
   /* background: rgba(76, 54, 199, 0.795); */
-  background: linear-gradient(rgba(76, 54, 199, 0.795), pink);
+  /* background: linear-gradient(rgba(76, 54, 199, 0.795), pink); */
   backdrop-filter: blur(5px);
-  box-shadow: 10px 10px 20px rgba(214, 4, 4, 0.3);
+  box-shadow: 10px 10px 20px rgba(15, 19, 231, 0.699);
 }
 .desc {
   font-size: 20px;
@@ -52,6 +56,14 @@
   box-shadow: 10px 10px 20px rgba(48, 252, 2, 0.932);
 }
 
+.btn-drama {
+  background: linear-gradient(#8a2be2, rgb(224, 224, 11));
+  color: black;
+}
+.btn-action {
+  background: linear-gradient(#1e90ff, #47b9ee);
+  color: black;
+}
 .movie-card-item img {
   width: 100%;
   height: auto;
@@ -59,7 +71,7 @@
 
 .right-container {
   position: relative;
-  background: rgb(233, 216, 216);
+  /* background: rgb(233, 216, 216); */
 
   /* min-height: 100vh; */
 }
@@ -75,7 +87,7 @@
 .tv-screen {
   width: 100%;
   height: 300px;
-  background: #222; /* Placeholder background */
+  background: #64616162; /* Placeholder background */
   border-radius: 10px; /* Match the TV's rounded corners */
   overflow: hidden;
   position: relative;
@@ -112,9 +124,9 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.7); /* Add some contrast */
+  background: linear-gradient(rgb(14, 14, 151), white); /* Add some contrast */
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 10px rgba(71, 8, 245, 0.774);
 }
 
 /* .slider-container { */
@@ -159,14 +171,18 @@
 .slick-arrow {
   z-index: 10;
 }
-
+.display-container {
+  background: linear-gradient(blue, white);
+}
 footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  font-size: 20px;
-  background: #070707dc;
+  height: 50px;
+  font-size: 18px;
+  /* background: linear-gradient(135deg, #b6e703, #1a0cdf, rgb(10, 25, 240)); */
+  background: linear-gradient(125deg, #1a0cdf, rgb(10, 25, 240), #b6e703);
+
   color: white;
 }
 /* For screens below 768px */
