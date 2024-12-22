@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
 export const Display = () => {
-  const [displayList, setDisplayList] = useState([]);
+  // const [displayList, setDisplayList] = useState([]);
 
   /* We use useEffect here because we need to re render the whole
    display of below components*/
@@ -48,21 +48,21 @@ export const Display = () => {
               </button>
             </div>
             <div className="mt-3 text-light">
-              {displayList.length} Movies listed
+              {/* {displayList.length} Movies listed */}
             </div>
           </div>
         </div>
 
         <div className="row mt-5">
           <div className="col d-flex justify-content-around gap-2 flex-wrap">
-            {displayList.map((item, i) => (
+            {/* {displayList.map((item, i) => (
               <div className="" key={i}>
                 <MovieCard
                   searchedMovie={item}
                   //   deleteFunc={handleOnDeleteMovie}
                 />
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

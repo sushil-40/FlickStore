@@ -1,19 +1,17 @@
 import React from "react";
 
-export const MovieCard = () => {
+export const MovieCard = ({ searchedMovie }) => {
+  const { Title, Plot, Poster, imdbRating, imdbID } = searchedMovie;
   return (
     <div className="container">
       <div className="col border mb-2 rounded text-dark p-3 movie-card-item">
         <div className="col-md">
-          <img src="../src/assets/ab.jpg" alt="" />
+          <img src={Poster} alt="" />
         </div>
         <div className="col-md">
           <h3> </h3>
-          <p>IMDB Rating: </p>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae,
-            iste?...
-          </p>
+          <p>IMDB Rating: {imdbRating}</p>
+          <p>{Plot?.slice(0, 70)}</p>
           {/* {!mood && ( */}
           <div className="d-flex justify-content-between gap-2">
             <button

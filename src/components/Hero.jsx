@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MovieCard } from "./MovieCard";
 import { MovieSlider } from "./MovieSlider";
+import { fetchFromAPI } from "../utils/axios";
+import { randomChar } from "../utils/random";
 
 export const Hero = () => {
+  const shouldFetch = useRef(true);
+  const searchRef = useRef("");
+  const [searchedMovie, setSearchedMovie] = useState("");
+
+  useEffect(() => {
+    if (shouldFetch.current) {
+      fetchMovie(randomChar());
+      shouldFetch.current = false;
+    }
+  }, []);
+
+  const fetchMovie = async (str) => {
+    const movie = await fetchFromAPI(str);
+    setSearchedMovie(movie);
+  };
+  console.log(searchedMovie);
   return (
     <div className="hero-container container d-flex justify-content-center  flex-column">
       <div className="hero-content row">
@@ -13,9 +31,10 @@ export const Hero = () => {
                 <div className="mb-3">
                   <p className="desc">Search millions of Movies online!</p>
                   <input
-                    type="email"
+                    ref={searchRef}
+                    type="text"
                     className="form-control"
-                    id="exampleInputEmail1"
+                    id="name"
                     aria-describedby="emailHelp"
                     placeholder="enter movie name"
                   />
@@ -28,7 +47,7 @@ export const Hero = () => {
               </form>
             </div>
             <div className="searched-movie">
-              <MovieCard />
+              <MovieCard searchedMovie={searchedMovie} />
             </div>
           </div>
         </div>
