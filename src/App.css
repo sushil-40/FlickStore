@@ -165,7 +165,7 @@
 }
 
 .slick-dots li button:before {
-  color: white; /* Color of the dots */
+  color: rgb(17, 17, 17); /* Color of the dots */
 }
 
 .slick-arrow {
