@@ -8,17 +8,23 @@ import { Display } from "./components/Display";
 import { Hero } from "./components/Hero";
 
 function App() {
+  const [movieList, setMovieList] = useState([]);
+
+  const addMovieToList = (movie) => {
+    const tempMv = movieList.filter((item) => item.imdbID !== movie.imdbID);
+    setMovieList([...tempMv, movie]);
+  };
   return (
     <div className="wrapper container">
       <header className="title  font-effect-shadow-multiple">
         Flick Store
       </header>
       {/* Hero container  */}
-      <Hero />
+      <Hero addMovieToList={addMovieToList} />
       {/* <div className="display-list  row mt-5 mb-2"> */}
 
       {/* Display component (saved movie list)  */}
-      <Display />
+      <Display movieList={movieList} />
       {/* </div> */}
       <footer className="footer-section container mt-3 ">
         &copy; 2024 Copyright all reserved || Sushil Dangoriya

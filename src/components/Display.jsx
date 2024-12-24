@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
-export const Display = () => {
+export const Display = ({ movieList, searchedMovie }) => {
+  const [displayList, setDisplayList] = useState([]);
+
+  useEffect(() => {
+    setDisplayList(movieList);
+  }, [movieList]);
   // const [displayList, setDisplayList] = useState([]);
 
   /* We use useEffect here because we need to re render the whole
@@ -63,6 +68,14 @@ export const Display = () => {
                 />
               </div>
             ))} */}
+
+            {displayList.map((item, i) => {
+              return (
+                <div className="" key={i}>
+                  <MovieCard searchedMovie={item} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

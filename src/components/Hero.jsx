@@ -4,11 +4,12 @@ import { MovieSlider } from "./MovieSlider";
 import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/random";
 
-export const Hero = () => {
+export const Hero = ({ addMovieToList }) => {
+  const [searchedMovie, setSearchedMovie] = useState({});
+  const [bgImg, setBgImg] = useState("");
   const shouldFetch = useRef(true);
   const searchRef = useRef("");
-
-  const [searchedMovie, setSearchedMovie] = useState({});
+  const [searching, setSearching] = useState(false);
   useEffect(() => {
     if (shouldFetch.current) {
       //fetch movie
@@ -20,18 +21,40 @@ export const Hero = () => {
   const fetchMovie = async (str) => {
     const movie = await fetchFromAPI(str);
     setSearchedMovie(movie);
+    setBgImg(movie.Poster);
+    setSearching(false);
   };
 
-  const handleOnMovieSearch = () => {
+  const handleOnMovieSearch = ({ addMovieToList }) => {
     const str = searchRef.current.value;
     fetchMovie(str);
     searchRef.current.value = "";
   };
 
+  const handleOnAddToTheList = (mood) => {
+    addMovieToList({
+      ...searchedMovie,
+      mood,
+    });
+    setSearchedMovie({});
+  };
+
+  const movieStyle = {
+    backgroundImage: `url(${bgImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    height: "auto",
+    // backdropFilter: "blur(px)",
+    opacity: "1",
+  };
+
   return (
     <div className="hero-container container d-flex justify-content-center  flex-column">
       <div className="hero-content row">
-        <div className="left-container col-12 col-md-4  d-flex justify-content-center align-items-center">
+        <div
+          className="left-container mt-2 col-12 col-md-4  d-flex justify-content-center align-items-center"
+          style={movieStyle}
+        >
           <div className="movie-search-container m-2 d-flex flex-column">
             <div className="movie-search d-flex justify-content-center align-items-start m-2 rounded">
               <form>
@@ -39,6 +62,7 @@ export const Hero = () => {
                   <p className="desc">Search millions of Movies online!</p>
                   <input
                     ref={searchRef}
+                    // onFocus={() => setSearching(true)}
                     type="text"
                     className="form-control"
                     id="name"
@@ -59,7 +83,10 @@ export const Hero = () => {
               </form>
             </div>
             <div className="searched-movie">
-              <MovieCard searchedMovie={searchedMovie} />
+              <MovieCard
+                searchedMovie={searchedMovie}
+                handleOnAddToTheList={handleOnAddToTheList}
+              />
               {/* <MovieCard searchedMovie={searchedMovie} /> */}
             </div>
           </div>
@@ -75,6 +102,7 @@ export const Hero = () => {
               </div>
               <div className="tv-stand"></div>
             </div>
+
             <hr className="line my-4" />
             <div className="trending-movies-container">
               <p className="sub-title">Trending Movies</p>

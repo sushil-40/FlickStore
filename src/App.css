@@ -64,6 +64,12 @@
   background: linear-gradient(#1e90ff, #47b9ee);
   color: black;
 }
+/* card  */
+.movie-card-item {
+  background: rgba(255, 255, 255, 0.356);
+  backdrop-filter: blur(5px);
+  max-width: 450px;
+}
 .movie-card-item img {
   width: 100%;
   height: auto;
@@ -200,4 +206,13 @@ footer {
   .display-list {
     margin-top: 10px; /* Add spacing between sections */
   }
+  .movie-card-item img {
+    max-height: 220px;
+    object-fit: cover;
+  }
+}
+
+.showMovie {
+  transform: scale(1);
+  animation: zoom 0.5s;
 }
