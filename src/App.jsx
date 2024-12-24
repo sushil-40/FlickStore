@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./App.css";
@@ -6,13 +6,29 @@ import { MovieCard } from "./components/MovieCard";
 import { MovieSlider } from "./components/MovieSlider";
 import { Display } from "./components/Display";
 import { Hero } from "./components/Hero";
+import {
+  accessFromLocalSession,
+  deleteFromLocalSession,
+  storeInLocalSession,
+} from "./utils/localStorage";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
 
+  useEffect(() => {
+    const mvList = accessFromLocalSession();
+    mvList?.length && setMovieList(mvList);
+  }, []);
+
   const addMovieToList = (movie) => {
     const tempMv = movieList.filter((item) => item.imdbID !== movie.imdbID);
     setMovieList([...tempMv, movie]);
+    storeInLocalSession([...tempMv, movie]);
+  };
+  const handleOnDeleteMovie = (imdbID) => {
+    setMovieList(movieList.filter((mv) => mv.imdbID !== imdbID));
+    confirm("Are you sure you want to delete");
+    deleteFromLocalSession(imdbID);
   };
   return (
     <div className="wrapper container">
@@ -24,7 +40,10 @@ function App() {
       {/* <div className="display-list  row mt-5 mb-2"> */}
 
       {/* Display component (saved movie list)  */}
-      <Display movieList={movieList} />
+      <Display
+        movieList={movieList}
+        handleOnDeleteMovie={handleOnDeleteMovie}
+      />
       {/* </div> */}
       <footer className="footer-section container mt-3 ">
         &copy; 2024 Copyright all reserved || Sushil Dangoriya

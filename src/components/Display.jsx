@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
-export const Display = ({ movieList, searchedMovie }) => {
+export const Display = ({ movieList, searchedMovie, handleOnDeleteMovie }) => {
   const [displayList, setDisplayList] = useState([]);
 
   useEffect(() => {
     setDisplayList(movieList);
   }, [movieList]);
+
+  const handleOnFilter = (mood) => {
+    if (mood === "all") {
+      return setDisplayList(movieList);
+    }
+    setDisplayList(movieList.filter((mv) => mv.mood === mood));
+  };
   // const [displayList, setDisplayList] = useState([]);
 
   /* We use useEffect here because we need to re render the whole
@@ -31,6 +38,7 @@ export const Display = ({ movieList, searchedMovie }) => {
           <div className="col">
             <div className="btn-group" role="group" aria-label="Basic example">
               <button
+                onClick={() => handleOnFilter("all")}
                 // onClick={() => hnadleOnFilter("all")}
                 type="button"
                 className="btn btn-primary"
@@ -38,14 +46,14 @@ export const Display = ({ movieList, searchedMovie }) => {
                 All
               </button>
               <button
-                // onClick={() => hnadleOnFilter("drama")}
+                onClick={() => handleOnFilter("drama")}
                 type="button"
                 className="btn btn-warning"
               >
                 Drama
               </button>
               <button
-                // onClick={() => hnadleOnFilter("action")}
+                onClick={() => handleOnFilter("action")}
                 type="button"
                 className="btn btn-info"
               >
@@ -53,6 +61,7 @@ export const Display = ({ movieList, searchedMovie }) => {
               </button>
             </div>
             <div className="mt-3 text-light">
+              {displayList.length} Movies Listed
               {/* {displayList.length} Movies listed */}
             </div>
           </div>
@@ -72,7 +81,10 @@ export const Display = ({ movieList, searchedMovie }) => {
             {displayList.map((item, i) => {
               return (
                 <div className="" key={i}>
-                  <MovieCard searchedMovie={item} />
+                  <MovieCard
+                    searchedMovie={item}
+                    deleteFunc={handleOnDeleteMovie}
+                  />
                 </div>
               );
             })}

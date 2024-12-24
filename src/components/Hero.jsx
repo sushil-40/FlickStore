@@ -30,13 +30,17 @@ export const Hero = ({ addMovieToList }) => {
     fetchMovie(str);
     searchRef.current.value = "";
   };
-
+  const handleOnDelete = () => {
+    setSearchedMovie({});
+    setSearching(true);
+  };
   const handleOnAddToTheList = (mood) => {
     addMovieToList({
       ...searchedMovie,
       mood,
     });
     setSearchedMovie({});
+    setSearching(true);
   };
 
   const movieStyle = {
@@ -83,10 +87,19 @@ export const Hero = ({ addMovieToList }) => {
               </form>
             </div>
             <div className="searched-movie">
-              <MovieCard
+              {!searching && (
+                <div className="movie-card-display showMovie">
+                  <MovieCard
+                    searchedMovie={searchedMovie}
+                    deleteFunc={handleOnDelete}
+                    handleOnAddToTheList={handleOnAddToTheList}
+                  />
+                </div>
+              )}
+              {/* <MovieCard
                 searchedMovie={searchedMovie}
                 handleOnAddToTheList={handleOnAddToTheList}
-              />
+              /> */}
               {/* <MovieCard searchedMovie={searchedMovie} /> */}
             </div>
           </div>
