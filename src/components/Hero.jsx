@@ -7,12 +7,13 @@ import { randomChar } from "../utils/random";
 export const Hero = () => {
   const shouldFetch = useRef(true);
   const searchRef = useRef("");
-  const [searchedMovie, setSearchedMovie] = useState("");
 
+  const [searchedMovie, setSearchedMovie] = useState({});
   useEffect(() => {
     if (shouldFetch.current) {
+      //fetch movie
       fetchMovie(randomChar());
-      shouldFetch.current = false;
+      shouldFetch.curent = false;
     }
   }, []);
 
@@ -20,7 +21,13 @@ export const Hero = () => {
     const movie = await fetchFromAPI(str);
     setSearchedMovie(movie);
   };
-  console.log(searchedMovie);
+
+  const handleOnMovieSearch = () => {
+    const str = searchRef.current.value;
+    fetchMovie(str);
+    searchRef.current.value = "";
+  };
+
   return (
     <div className="hero-container container d-flex justify-content-center  flex-column">
       <div className="hero-content row">
@@ -40,7 +47,12 @@ export const Hero = () => {
                   />
                 </div>
                 <div className="search-btn-container">
-                  <button type="submit" className="btn btn-primary search-btn">
+                  <button
+                    type="button"
+                    onClick={handleOnMovieSearch}
+                    className="btn btn-primary search-btn"
+                    id="button-addon2"
+                  >
                     Search
                   </button>
                 </div>
@@ -48,6 +60,7 @@ export const Hero = () => {
             </div>
             <div className="searched-movie">
               <MovieCard searchedMovie={searchedMovie} />
+              {/* <MovieCard searchedMovie={searchedMovie} /> */}
             </div>
           </div>
         </div>

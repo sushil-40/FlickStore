@@ -9,7 +9,7 @@ export const MovieCard = ({ searchedMovie }) => {
           <img src={Poster} alt="" />
         </div>
         <div className="col-md">
-          <h3> </h3>
+          <h3>{Title} </h3>
           <p>IMDB Rating: {imdbRating}</p>
           <p>{Plot?.slice(0, 70)}</p>
           {/* {!mood && ( */}
