@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useRef, useState } from "react";
 import { MovieCard } from "./MovieCard";
 import { MovieSlider } from "./MovieSlider";
@@ -25,7 +26,7 @@ export const Hero = ({ addMovieToList }) => {
     setSearching(false);
   };
 
-  const handleOnMovieSearch = ({ addMovieToList }) => {
+  const handleOnMovieSearch = () => {
     const str = searchRef.current.value;
     fetchMovie(str);
     searchRef.current.value = "";
