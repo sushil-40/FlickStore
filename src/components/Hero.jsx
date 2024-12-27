@@ -15,6 +15,7 @@ export const Hero = ({ addMovieToList }) => {
     if (shouldFetch.current) {
       //fetch movie
       fetchMovie(randomChar());
+
       shouldFetch.curent = false;
     }
   }, []);
@@ -22,13 +23,18 @@ export const Hero = ({ addMovieToList }) => {
   const fetchMovie = async (str) => {
     const movie = await fetchFromAPI(str);
     setSearchedMovie(movie);
-    setBgImg(movie.Poster);
-    setSearching(false);
+    // setBgImg(movie.Poster);
+    // console.log(movie);
+    setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
+    // setBgImg(`image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg`);
+
+    //image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg
   };
 
   const handleOnMovieSearch = () => {
     const str = searchRef.current.value;
     fetchMovie(str);
+
     searchRef.current.value = "";
   };
   const handleOnDelete = () => {
@@ -92,6 +98,7 @@ export const Hero = ({ addMovieToList }) => {
                 <div className="movie-card-display showMovie">
                   <MovieCard
                     searchedMovie={searchedMovie}
+                    poster_path={bgImg}
                     deleteFunc={handleOnDelete}
                     handleOnAddToTheList={handleOnAddToTheList}
                   />
