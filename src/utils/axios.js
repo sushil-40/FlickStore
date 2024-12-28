@@ -22,8 +22,9 @@ export const fetchFromAPI = async (str) => {
 
   try {
     const response = await axios.get(url); // Make the API call
-    console.log(response.data.results);
+    // console.log(response.data.results);
     const movies = response.data.results;
+    // console.log(movies);
 
     if (movies.length > 0) {
       // Pick a random movie from the list

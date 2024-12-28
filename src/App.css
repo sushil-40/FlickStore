@@ -69,7 +69,7 @@
 .movie-card-item {
   background: rgba(255, 255, 255, 0.356);
   backdrop-filter: blur(5px);
-  max-width: 450px;
+  max-width: 500px;
 }
 .movie-card-item img {
   width: 100%;

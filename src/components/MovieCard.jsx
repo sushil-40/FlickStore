@@ -4,10 +4,11 @@ export const MovieCard = ({
   searchedMovie,
   deleteFunc,
   handleOnAddToTheList,
-  poster_path,
+  // poster_path,
 }) => {
   // const { Poster = "", Title, Plot, imdbRating, mood, imdbID } = searchedMovie;
-  const { title, overview, vote_average, mood, id } = searchedMovie;
+  const { title, overview, vote_average, mood, id, poster_path } =
+    searchedMovie;
   // Construct the full URL for the image
   // const posterUrl = poster_path
   //   ? `https://image.tmdb.org/t/p/w342${poster_path}`
@@ -20,16 +21,24 @@ export const MovieCard = ({
       <div className="row border rounded text-dark p-3 movie-card-item">
         <div className="col-md">
           {/* <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" /> */}
-          <img
+          {/* <img
             src={
               <img
                 // src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 // src={`https://image.tmdb.org/t/p/w342${poster_path}`}
-                src={poster_path}
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 alt=""
               />
             }
-            alt=""
+          /> */}
+          <img
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                : "https://via.placeholder.com/500x750?text=No+Image"
+            }
+            // style={{ width: "100%", height: "450px", maxWidth: "400px" }} // Adjust size here
+            alt={title}
           />
         </div>
         <div className="col-md">
