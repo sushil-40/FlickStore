@@ -21,14 +21,14 @@ function App() {
   }, []);
 
   const addMovieToList = (movie) => {
-    const tempMv = movieList.filter((item) => item.imdbID !== movie.imdbID);
+    const tempMv = movieList.filter((item) => item.id !== movie.id);
     setMovieList([...tempMv, movie]);
     storeInLocalSession([...tempMv, movie]);
   };
-  const handleOnDeleteMovie = (imdbID) => {
-    setMovieList(movieList.filter((mv) => mv.imdbID !== imdbID));
+  const handleOnDeleteMovie = (id) => {
+    setMovieList(movieList.filter((mv) => mv.id !== id));
     confirm("Are you sure you want to delete");
-    deleteFromLocalSession(imdbID);
+    deleteFromLocalSession(id);
   };
   return (
     <div className="wrapper container">

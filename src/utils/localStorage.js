@@ -7,8 +7,8 @@ export const accessFromLocalSession = () => {
   return str ? JSON.parse(localStorage.getItem("movieList")) : null;
 };
 
-export const deleteFromLocalSession = (imdbID) => {
+export const deleteFromLocalSession = (id) => {
   const movieList = accessFromLocalSession();
-  const updatedMovieList = movieList.filter((mv) => mv.imdbID !== imdbID);
+  const updatedMovieList = movieList.filter((mv) => mv.id !== id);
   localStorage.setItem("movieList", JSON.stringify(updatedMovieList));
 };

@@ -33,6 +33,7 @@ export const Hero = ({ addMovieToList }) => {
 
   const handleOnMovieSearch = () => {
     const str = searchRef.current.value;
+    console.log(str);
     fetchMovie(str);
 
     searchRef.current.value = "";

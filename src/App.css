@@ -74,6 +74,14 @@
 .movie-card-item img {
   width: 100%;
   height: auto;
+  transform-origin: center center; /* Ensures scaling happens from the center */
+  transition: transform 1s ease-in-out, filter 1s ease-in-out; /* Apply transition to both transform and filter */
+}
+.movie-card-item img:hover {
+  /* transform: scale(2); Enlarge the image by 20% */
+  transform: scale(2) translate(50%, -50%); /* Scale the image and move it towards the center */
+
+  filter: brightness(1.2); /* Optionally, add a slight brightness effect */
 }
 
 .right-container {
