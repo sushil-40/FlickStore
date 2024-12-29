@@ -43,7 +43,7 @@ export const MovieCard = ({
         </div>
         <div className="col-md">
           <h3>{title} </h3>
-          <p>IMDB Rating: {vote_average}</p>
+          <p>Rating: {vote_average}</p>
           <p>{overview?.slice(0, 70)}...</p>
           {!mood && (
             <div className="d-flex justify-content-between gap-2">

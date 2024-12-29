@@ -29,6 +29,7 @@ export const Hero = ({ addMovieToList }) => {
     // setBgImg(`image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg`);
 
     //image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg
+    setSearching(false);
   };
 
   const handleOnMovieSearch = () => {
