@@ -8,9 +8,12 @@ import { randomChar } from "../utils/random";
 export const Hero = ({ addMovieToList }) => {
   const [searchedMovie, setSearchedMovie] = useState({});
   const [bgImg, setBgImg] = useState("");
+
+  const [trailerURL, setTrailerURL] = useState("");
   const shouldFetch = useRef(true);
   const searchRef = useRef("");
   const [searching, setSearching] = useState(false);
+  const trailerURLTest = "https://www.youtube.com/embed/nqT9HQma79A";
   useEffect(() => {
     if (shouldFetch.current) {
       //fetch movie
@@ -22,14 +25,18 @@ export const Hero = ({ addMovieToList }) => {
 
   const fetchMovie = async (str) => {
     const movie = await fetchFromAPI(str);
-    setSearchedMovie(movie);
-    // setBgImg(movie.Poster);
-    // console.log(movie);
-    setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
-    // setBgImg(`image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg`);
+    if (movie) {
+      // const trailer = await fetchFromAPI(movie.id);
+      setSearchedMovie(movie);
+      setTrailerURL(movie.trailer);
+      // setBgImg(movie.Poster);
+      // console.log(movie);
+      setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
+      // setBgImg(`image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg`);
 
-    //image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg
-    setSearching(false);
+      //image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg
+      setSearching(false);
+    }
   };
 
   const handleOnMovieSearch = () => {
@@ -61,6 +68,7 @@ export const Hero = ({ addMovieToList }) => {
     opacity: "1",
   };
 
+  console.log("trailer link at Hero", trailerURL);
   return (
     <div className="hero-container container d-flex justify-content-center  flex-column">
       <div className="hero-content row">
@@ -118,10 +126,43 @@ export const Hero = ({ addMovieToList }) => {
           <div className="video-preview-container d-flex justify-content-center align-items-center flex-column">
             <div className="modern-tv mt-2">
               <div className="tv-screen">
-                <video autoPlay loop muted>
+                {trailerURL ? (
+                  <iframe
+                    width="560"
+                    height="315"
+                    src={trailerURL}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                ) : (
+                  <iframe
+                    width="560"
+                    height="315"
+                    src={trailerURL}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  >
+                    <iframe
+                      width="560"
+                      height="315"
+                      // src={trailerURL}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </iframe>
+                )}
+
+                {/* <video autoPlay loop muted>
                   <source src="your-video.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
-                </video>
+                </video> */}
+                <div>{trailerURL}</div>
               </div>
               <div className="tv-stand"></div>
             </div>

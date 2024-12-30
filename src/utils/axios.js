@@ -33,6 +33,32 @@ const apiKEY = import.meta.env.VITE_APIKEY; // Ensure your API key is set correc
 
 const baseURL = "https://api.themoviedb.org/3/";
 
+//Function to fetch trailer using movie ID
+const fetchTrailer = async (movieId) => {
+  const trailerURL = `${baseURL}movie/${movieId}/videos?api_key=${apiKEY}&language=en-US`;
+
+  try {
+    const response = await axios.get(trailerURL);
+    const videos = response.data.results;
+
+    //Find the first trailer ( or a specific type if needed)
+
+    const trailer = videos.find(
+      (video) => video.type === "Trailer" && video.site === "YouTube"
+    );
+    if (trailer) {
+      console.log("Trailer found:", trailer);
+      return `https://www.youtube.com/embed/${trailer.key}`;
+    } else {
+      console.log("No trailer found for this movie.");
+      return null;
+    }
+  } catch (error) {
+    console.log("Error fetching trailer", error);
+    return null;
+  }
+};
+
 //for searching movies
 // https://api.themoviedb.org/3/search/movie?api_key=YOUR_API_KEY&query=Inception
 //for trending movies
@@ -40,7 +66,7 @@ const baseURL = "https://api.themoviedb.org/3/";
 // https://api.themoviedb.org/3/trending/movie/day?api_key=YOUR_API_KEY
 
 // const apiEP = `https://api.themoviedb.org/3/search/movie?api_key=${apiKEY}&query=`; // Corrected API endpoint
-
+// const url = 'https://api.themoviedb.org/3/movie/movie_id/videos?language=en-US';  // for trailer of movies
 export const fetchFromAPI = async (str, type = "search") => {
   // const url = apiEP + str; // Construct the full URL
   let url = "";
@@ -58,7 +84,14 @@ export const fetchFromAPI = async (str, type = "search") => {
       if (type === "search") {
         const randomIndex = Math.floor(Math.random() * movies.length);
         const randomMovie = movies[randomIndex];
-        return randomMovie;
+        // console.log(randomMovie);
+        // console.log(randomMovie.id);
+
+        //Fetch trailer for the random movie
+
+        const trailer = await fetchTrailer(randomMovie.id);
+        console.log("trailer link at axios", trailer);
+        return { ...randomMovie, trailer };
       } else if (type === "trending") {
         return movies;
       }
