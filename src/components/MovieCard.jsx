@@ -19,7 +19,6 @@ export const MovieCard = ({
                 ? `https://image.tmdb.org/t/p/w500${poster_path}`
                 : "https://via.placeholder.com/500x750?text=No+Image"
             }
-            // style={{ width: "100%", height: "450px", maxWidth: "400px" }} // Adjust size here
             alt={title}
           />
         </div>

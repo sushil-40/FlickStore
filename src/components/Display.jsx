@@ -14,23 +14,7 @@ export const Display = ({ movieList, searchedMovie, handleOnDeleteMovie }) => {
     }
     setDisplayList(movieList.filter((mv) => mv.mood === mood));
   };
-  // const [displayList, setDisplayList] = useState([]);
 
-  /* We use useEffect here because we need to re render the whole
-   display of below components*/
-  //   useEffect(() => {
-  //     setDisplayList(movieList);
-  //   }, [movieList]);
-
-  //   const hnadleOnFilter = (mood) => {
-  //     if (mood === "all") {
-  //       return setDisplayList(movieList);
-  //     }
-  //     // const filterMv = movieList.filter((mv) => mv.mood === mood);
-  //     // setDisplayList(filterMv);
-
-  //     setDisplayList(movieList.filter((mv) => mv.mood === mood));
-  //   };
   return (
     <div className=" mt-1">
       <div className="display-container p-3 rounded">
@@ -39,7 +23,6 @@ export const Display = ({ movieList, searchedMovie, handleOnDeleteMovie }) => {
             <div className="btn-group" role="group" aria-label="Basic example">
               <button
                 onClick={() => handleOnFilter("all")}
-                // onClick={() => hnadleOnFilter("all")}
                 type="button"
                 className="btn btn-primary"
               >
@@ -62,22 +45,12 @@ export const Display = ({ movieList, searchedMovie, handleOnDeleteMovie }) => {
             </div>
             <div className="mt-3 text-light">
               {displayList.length} Movies Listed
-              {/* {displayList.length} Movies listed */}
             </div>
           </div>
         </div>
 
         <div className="row mt-5">
           <div className="col d-flex justify-content-around gap-2 flex-wrap">
-            {/* {displayList.map((item, i) => (
-              <div className="" key={i}>
-                <MovieCard
-                  searchedMovie={item}
-                  //   deleteFunc={handleOnDeleteMovie}
-                />
-              </div>
-            ))} */}
-
             {displayList.map((item, i) => {
               return (
                 <div className="" key={i}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 
@@ -5,7 +6,6 @@ import { fetchFromAPI } from "../utils/axios";
 import { MovieCard } from "./MovieCard";
 
 export const MovieSlider = ({ onMovieClick }) => {
-  // const slides = [z, ab, z, ab, z];
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   const shouldFetch = useRef(true);
@@ -20,7 +20,6 @@ export const MovieSlider = ({ onMovieClick }) => {
     setTrendingMovies(listOfTrendingMovies.slice(0, 5));
     // console.log(trendingMovies);
   };
-  console.log(trendingMovies);
 
   const settings = {
     dots: true, // Show navigation dots

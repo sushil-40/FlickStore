@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./App.css";
-import { MovieCard } from "./components/MovieCard";
-import { MovieSlider } from "./components/MovieSlider";
 import { Display } from "./components/Display";
 import { Hero } from "./components/Hero";
+import tmdbLogo from "./assets/tmdb-logo.svg";
 import {
   accessFromLocalSession,
   deleteFromLocalSession,
@@ -32,12 +31,22 @@ function App() {
   };
   return (
     <div className="wrapper container">
-      <header className="title  font-effect-shadow-multiple">
-        Flick Store
-      </header>
+      <div className="header-container container d-flex ">
+        <div className="title  font-effect-shadow-multiple">Flick Store</div>
+        <div className="logo-container">
+          <img
+            src={tmdbLogo}
+            alt="TMDb Logo"
+            className="tmdb-logo"
+            height="80px"
+            width="80px"
+          />
+          <p>This product uses the TMDb API</p>
+        </div>
+      </div>
+
       {/* Hero container  */}
       <Hero addMovieToList={addMovieToList} />
-      {/* <div className="display-list  row mt-5 mb-2"> */}
 
       {/* Display component (saved movie list)  */}
       <Display
@@ -45,9 +54,46 @@ function App() {
         handleOnDeleteMovie={handleOnDeleteMovie}
       />
       {/* </div> */}
-      <footer className="footer-section container mt-3 ">
-        &copy; 2024 Copyright all reserved || Sushil Dangoriya
-      </footer>
+      <div className="footer-section   d-flex gap-5 container mt-3 ">
+        <div className="personal-content">
+          &copy; 2024 Copyright all reserved || Sushil Dangoriya
+        </div>
+        <div className="acknowledgement-tmdb">
+          <p>
+            The
+            <a
+              href="https://www.themoviedb.org/documentation/api"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TMDb API
+            </a>{" "}
+            is an invaluable resource for developers and creators worldwide, and
+            I am grateful for the opportunity to use it in this educational
+            project.
+          </p>
+        </div>
+        <div className="tmdb-content d-flex flex-column align-items-start">
+          <div className="p1">
+            This product uses the
+            <a
+              href="https://www.themoviedb.org/documentation/api"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TMDb API
+            </a>
+            but is not endorsed or certified by TMDb.
+          </div>
+
+          <div className="p2">
+            Powered by
+            <a href="https://www.themoviedb.org/" target="_blank">
+              TMDb
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

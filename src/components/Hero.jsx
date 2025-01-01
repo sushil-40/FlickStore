@@ -5,7 +5,7 @@ import { MovieCard } from "./MovieCard";
 import { MovieSlider } from "./MovieSlider";
 import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/random";
-import backgroundDefaultImage from "../assets/ab.jpg";
+import bgImgDefault from "../assets/ab.jpg";
 
 export const Hero = ({ addMovieToList }) => {
   const [searchedMovie, setSearchedMovie] = useState({});
@@ -15,7 +15,7 @@ export const Hero = ({ addMovieToList }) => {
   const shouldFetch = useRef(true);
   const searchRef = useRef("");
   const [searching, setSearching] = useState(false);
-  // const trailerURLTest = "https://www.youtube.com/embed/nqT9HQma79A";
+
   useEffect(() => {
     if (shouldFetch.current) {
       //fetch movie
@@ -28,15 +28,11 @@ export const Hero = ({ addMovieToList }) => {
   const fetchMovie = async (str) => {
     const movie = await fetchFromAPI(str);
     if (movie) {
-      // const trailer = await fetchFromAPI(movie.id);
       setSearchedMovie(movie);
       setTrailerURL(movie.trailer);
-      // setBgImg(movie.Poster);
-      // console.log(movie);
-      setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
-      // setBgImg(`image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg`);
 
-      //image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg
+      setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
+
       //Image Loaded
       setLoadingBg(false);
       setSearching(false);
@@ -66,25 +62,22 @@ export const Hero = ({ addMovieToList }) => {
   const handleOnTrendingMovieClick = (movie) => {
     setSearchedMovie({ ...movie, mood: null });
     setTrailerURL(movie.trailer);
-    console.log(("test trailer link from trending movie", movie.trailerURL));
+
     setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
     setLoadingBg(false);
     setSearching(false);
   };
 
   const movieStyle = {
-    backgroundImage: loadingBg
-      ? `url(${backgroundDefaultImage}))`
-      : `url(${bgImg})`,
+    backgroundImage: loadingBg ? `url(${bgImgDefault}))` : `url(${bgImg})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "auto",
-    // backdropFilter: "blur(px)",
+
     opacity: loadingBg ? "0" : "1",
     transition: "opacity 0.3s ease",
   };
 
-  console.log("trailer link at Hero", trailerURL);
   return (
     <div className="hero-container container d-flex justify-content-center  flex-column">
       <div className="hero-content row">
@@ -99,7 +92,6 @@ export const Hero = ({ addMovieToList }) => {
                   <p className="desc">Search millions of Movies online!</p>
                   <input
                     ref={searchRef}
-                    // onFocus={() => setSearching(true)}
                     type="text"
                     className="form-control"
                     id="name"
@@ -145,7 +137,7 @@ export const Hero = ({ addMovieToList }) => {
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 ) : (
                   <p className="text-center">No trailer available.</p>
