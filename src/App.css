@@ -92,7 +92,7 @@
 }
 
 .modern-tv {
-  width: 80%;
+  width: 100%;
   background: #000; /* TV frame color */
   border-radius: 10px; /* Slight rounding for a modern look */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Shadow for depth */
@@ -108,10 +108,16 @@
   position: relative;
 }
 
-.tv-screen video {
+.tv-screen iframe {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Makes video fill the screen without distortion */
+}
+.text-center {
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  margin-top: 20%;
 }
 
 .tv-stand {

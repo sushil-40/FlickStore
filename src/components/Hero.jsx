@@ -1,19 +1,21 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useRef, useState } from "react";
+
 import { MovieCard } from "./MovieCard";
 import { MovieSlider } from "./MovieSlider";
 import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/random";
+import backgroundDefaultImage from "../assets/ab.jpg";
 
 export const Hero = ({ addMovieToList }) => {
   const [searchedMovie, setSearchedMovie] = useState({});
   const [bgImg, setBgImg] = useState("");
-
+  const [loadingBg, setLoadingBg] = useState(true);
   const [trailerURL, setTrailerURL] = useState("");
   const shouldFetch = useRef(true);
   const searchRef = useRef("");
   const [searching, setSearching] = useState(false);
-  const trailerURLTest = "https://www.youtube.com/embed/nqT9HQma79A";
+  // const trailerURLTest = "https://www.youtube.com/embed/nqT9HQma79A";
   useEffect(() => {
     if (shouldFetch.current) {
       //fetch movie
@@ -35,6 +37,8 @@ export const Hero = ({ addMovieToList }) => {
       // setBgImg(`image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg`);
 
       //image.tmdb.org/t/p/w342/7xaQAc01TZOHEku2uC520OIENWx.jpg
+      //Image Loaded
+      setLoadingBg(false);
       setSearching(false);
     }
   };
@@ -59,13 +63,25 @@ export const Hero = ({ addMovieToList }) => {
     setSearching(true);
   };
 
+  const handleOnTrendingMovieClick = (movie) => {
+    setSearchedMovie({ ...movie, mood: null });
+    setTrailerURL(movie.trailer);
+    console.log(("test trailer link from trending movie", movie.trailerURL));
+    setBgImg(`https://image.tmdb.org/t/p/w342${movie.poster_path}`);
+    setLoadingBg(false);
+    setSearching(false);
+  };
+
   const movieStyle = {
-    backgroundImage: `url(${bgImg})`,
+    backgroundImage: loadingBg
+      ? `url(${backgroundDefaultImage}))`
+      : `url(${bgImg})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "auto",
     // backdropFilter: "blur(px)",
-    opacity: "1",
+    opacity: loadingBg ? "0" : "1",
+    transition: "opacity 0.3s ease",
   };
 
   console.log("trailer link at Hero", trailerURL);
@@ -114,11 +130,6 @@ export const Hero = ({ addMovieToList }) => {
                   />
                 </div>
               )}
-              {/* <MovieCard
-                searchedMovie={searchedMovie}
-                handleOnAddToTheList={handleOnAddToTheList}
-              /> */}
-              {/* <MovieCard searchedMovie={searchedMovie} /> */}
             </div>
           </div>
         </div>
@@ -137,32 +148,8 @@ export const Hero = ({ addMovieToList }) => {
                     allowfullscreen
                   ></iframe>
                 ) : (
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={trailerURL}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  >
-                    <iframe
-                      width="560"
-                      height="315"
-                      // src={trailerURL}
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </iframe>
+                  <p className="text-center">No trailer available.</p>
                 )}
-
-                {/* <video autoPlay loop muted>
-                  <source src="your-video.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video> */}
-                <div>{trailerURL}</div>
               </div>
               <div className="tv-stand"></div>
             </div>
@@ -172,15 +159,12 @@ export const Hero = ({ addMovieToList }) => {
               <p className="sub-title">Trending Movies</p>
               {/* Movie slider  */}
               <div className="col-12 trending-movies">
-                <MovieSlider />
+                <MovieSlider onMovieClick={handleOnTrendingMovieClick} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="display-list  row mt-5 mb-2">
-        <Display />
-      </div> */}
     </div>
   );
 };

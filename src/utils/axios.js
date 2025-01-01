@@ -93,7 +93,14 @@ export const fetchFromAPI = async (str, type = "search") => {
         console.log("trailer link at axios", trailer);
         return { ...randomMovie, trailer };
       } else if (type === "trending") {
-        return movies;
+        //Fetch trailers for all trending movies
+        const moviesWithTrailers = await Promise.all(
+          movies.map(async (movie) => {
+            const trailer = await fetchTrailer(movie.id);
+            return { ...movie, trailer };
+          })
+        );
+        return moviesWithTrailers;
       }
     } else {
       console.log("No results found.");

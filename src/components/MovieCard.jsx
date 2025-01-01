@@ -6,31 +6,13 @@ export const MovieCard = ({
   handleOnAddToTheList,
   // poster_path,
 }) => {
-  // const { Poster = "", Title, Plot, imdbRating, mood, imdbID } = searchedMovie;
   const { title, overview, vote_average, mood, id, poster_path } =
     searchedMovie;
-  // Construct the full URL for the image
-  // const posterUrl = poster_path
-  //   ? `https://image.tmdb.org/t/p/w342${poster_path}`
-  //   : "https://via.placeholder.com/300x450?text=No+Image"; // Fallback image in case poster_path is not available
-
-  // const poster = "https://www.omdbapi.com/src/poster.jpg";
 
   return (
     <div className="container">
       <div className="row border rounded text-dark p-3 movie-card-item">
         <div className="col-md">
-          {/* <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" /> */}
-          {/* <img
-            src={
-              <img
-                // src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                // src={`https://image.tmdb.org/t/p/w342${poster_path}`}
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                alt=""
-              />
-            }
-          /> */}
           <img
             src={
               poster_path
