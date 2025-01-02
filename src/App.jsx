@@ -31,19 +31,9 @@ function App() {
   };
   return (
     <div className="wrapper container">
-      <div className="header-container container d-flex ">
-        <div className="title  font-effect-shadow-multiple">Flick Store</div>
-        <div className="logo-container">
-          <img
-            src={tmdbLogo}
-            alt="TMDb Logo"
-            className="tmdb-logo"
-            height="80px"
-            width="80px"
-          />
-          <p>This product uses the TMDb API</p>
-        </div>
-      </div>
+      <header className="title  font-effect-shadow-multiple container ">
+        Flick Store
+      </header>
 
       {/* Hero container  */}
       <Hero addMovieToList={addMovieToList} />
@@ -58,24 +48,9 @@ function App() {
         <div className="personal-content">
           &copy; 2024 Copyright all reserved || Sushil Dangoriya
         </div>
-        <div className="acknowledgement-tmdb">
-          <p>
-            The
-            <a
-              href="https://www.themoviedb.org/documentation/api"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              TMDb API
-            </a>{" "}
-            is an invaluable resource for developers and creators worldwide, and
-            I am grateful for the opportunity to use it in this educational
-            project.
-          </p>
-        </div>
-        <div className="tmdb-content d-flex flex-column align-items-start">
+        <div className="tmdb-content col-md-4 ">
           <div className="p1">
-            This product uses the
+            This web application uses
             <a
               href="https://www.themoviedb.org/documentation/api"
               target="_blank"
@@ -83,14 +58,19 @@ function App() {
             >
               TMDb API
             </a>
-            but is not endorsed or certified by TMDb.
+            but is not endorsed, certified, or otherwise approved by TMDB.
           </div>
-
-          <div className="p2">
-            Powered by
-            <a href="https://www.themoviedb.org/" target="_blank">
-              TMDb
-            </a>
+        </div>
+        <div className="acknowledgement-tmdb col-md-2">
+          <div className="logo-container">
+            <img
+              src={tmdbLogo}
+              alt="TMDb Logo"
+              className="tmdb-logo"
+              height="40px"
+              width="40px"
+            />
+            <p>This product uses the TMDb API</p>
           </div>
         </div>
       </div>

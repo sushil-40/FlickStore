@@ -5,7 +5,7 @@ import { MovieCard } from "./MovieCard";
 import { MovieSlider } from "./MovieSlider";
 import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/random";
-import bgImgDefault from "../assets/ab.jpg";
+import bgImgDefault from "../assets/q.jpg";
 
 export const Hero = ({ addMovieToList }) => {
   const [searchedMovie, setSearchedMovie] = useState({});
@@ -69,7 +69,18 @@ export const Hero = ({ addMovieToList }) => {
   };
 
   const movieStyle = {
-    backgroundImage: loadingBg ? `url(${bgImgDefault}))` : `url(${bgImg})`,
+    // backgroundImage: loadingBg ? `url(${bgImgDefault}))` : `url(${bgImg})`,
+    backgroundImage: `url(${loadingBg ? bgImgDefault : bgImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    height: "auto",
+
+    opacity: loadingBg ? "0" : "1",
+    transition: "opacity 0.3s ease",
+  };
+  const movieStyle1 = {
+    // backgroundImage: loadingBg ? `url(${bgImgDefault}))` : `url(${bgImg})`,
+    backgroundImage: `url(${loadingBg ? bgImgDefault : null})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "auto",
@@ -79,7 +90,10 @@ export const Hero = ({ addMovieToList }) => {
   };
 
   return (
-    <div className="hero-container container d-flex justify-content-center  flex-column">
+    <div
+      className="hero-container container d-flex justify-content-center  flex-column"
+      style={movieStyle1}
+    >
       <div className="hero-content row">
         <div
           className="left-container mt-2 col-12 col-md-4  d-flex justify-content-center align-items-center"
