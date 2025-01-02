@@ -46,7 +46,7 @@ function App() {
       {/* </div> */}
       <div className="footer-section   d-flex gap-5 container mt-3 ">
         <div className="personal-content">
-          &copy; 2024 Copyright all reserved || Sushil Dangoriya
+          &copy; 2025 Copyright all reserved || Sushil Dangoriya
         </div>
         <div className="tmdb-content col-md-4 ">
           <div className="p1">
