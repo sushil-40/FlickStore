@@ -43,7 +43,6 @@ header {
   transform: scale(1.2);
   margin-top: 5px;
   transition: linear 0.5s;
-  box-shadow: 5px 5px 5px rgba(48, 252, 2, 0.932);
 }
 
 .btn-drama {
