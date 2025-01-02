@@ -41,9 +41,9 @@ header {
 }
 .search-btn:hover {
   transform: scale(1.2);
-  margin-top: 10px;
+  margin-top: 5px;
   transition: linear 0.5s;
-  box-shadow: 10px 10px 20px rgba(48, 252, 2, 0.932);
+  box-shadow: 5px 5px 5px rgba(48, 252, 2, 0.932);
 }
 
 .btn-drama {
